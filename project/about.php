@@ -67,46 +67,7 @@ if(isset($_SESSION['user_id'])){
 
 	<section id="subsidiaries">
 	<h2>Subsidiary Companies and Projects</h2>
-    <div class="slideshow-container">
-       <div class="mySlides fade">
-          <img src="img/img1.jpg" style="width:100%">
-          <div class="caption">Caption Text 1</div>
-        </div>
-
-        <div class="mySlides fade">
-          <img src="img/img1.jpg" style="width:100%">
-          <div class="caption">Caption Text 1</div>
-        </div>
-
-        <div class="mySlides fade">
-          <img src="img/img1.jpg" style="width:100%">
-          <div class="caption">Caption Text 1</div>
-        </div>
-
-        <div class="mySlides fade">
-          <img src="img/img1.jpg" style="width:100%">
-          <div class="caption">Caption Text 1</div>
-        </div>
-
-        <div class="mySlides fade">
-          <img src="img/img1.jpg" style="width:100%">
-          <div class="caption">Caption Text 1</div>
-        </div>
-
-        <div class="mySlides fade">
-          <img src="img/img1.jpg" style="width:100%">
-          <div class="caption">Caption Text 1</div>
-        </div>
-
-        <div class="mySlides fade">
-          <img src="img/img1.jpg" style="width:100%">
-          <div class="caption">Caption Text 1</div>
-        </div>
-
-
-           <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    </div>
+    
       
 
 

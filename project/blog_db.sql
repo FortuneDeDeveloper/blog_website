@@ -27,15 +27,17 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-CREATE TABLE `admin` (
+CREATE TABLE IF NOT EXISTS`admin` (
   `id` int(100) NOT NULL,
   `name` varchar(20) NOT NULL,
   `password` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 --
 -- Dumping data for table `admin`
 --
+
 
 INSERT INTO `admin` (`id`, `name`, `password`) VALUES
 (1, 'admin', '6216f8a75fd5bb3d5f22b6f9958cdede3fc086c2');
@@ -46,15 +48,16 @@ INSERT INTO `admin` (`id`, `name`, `password`) VALUES
 -- Table structure for table `comments`
 --
 
-CREATE TABLE `comments` (
+CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(100) NOT NULL,
   `post_id` int(100) NOT NULL,
   `admin_id` int(100) NOT NULL,
   `user_id` int(100) NOT NULL,
   `user_name` varchar(50) NOT NULL,
   `comment` varchar(1000) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `date` date NOT NULL 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 -- --------------------------------------------------------
 
@@ -62,12 +65,13 @@ CREATE TABLE `comments` (
 -- Table structure for table `likes`
 --
 
-CREATE TABLE `likes` (
+CREATE TABLE IF NOT EXISTS `likes` (
   `id` int(100) NOT NULL,
   `user_id` int(100) NOT NULL,
   `admin_id` int(100) NOT NULL,
   `post_id` int(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 -- --------------------------------------------------------
 
@@ -75,17 +79,21 @@ CREATE TABLE `likes` (
 -- Table structure for table `posts`
 --
 
-CREATE TABLE `posts` (
+CREATE TABLE IF NOT EXISTS `posts` (
   `id` int(100) NOT NULL,
   `admin_id` int(100) NOT NULL,
   `name` varchar(100) NOT NULL,
   `title` varchar(100) NOT NULL,
   `content` varchar(10000) NOT NULL,
-  `category` varchar(50) NOT NULL,
-  `image` varchar(100) NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp(),
-  `status` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `image_01` varchar(100) NOT NULL,
+  `image_02` varchar(100) NOT NULL,
+  `image_03` varchar(100) NOT NULL,
+  `image_04` varchar(100) NOT NULL,
+  `image_05` varchar(100) NOT NULL,
+  `image_06` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
 
 -- --------------------------------------------------------
 
@@ -93,12 +101,13 @@ CREATE TABLE `posts` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` int(100) NOT NULL,
   `name` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 --
 -- Indexes for dumped tables

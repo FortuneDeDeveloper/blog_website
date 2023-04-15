@@ -1,4 +1,5 @@
 <?php
+
 if(isset($message)){
    foreach($message as $message){
       echo '
@@ -13,7 +14,7 @@ if(isset($message)){
 
 <header class="header">
 
-   <a href="dashboard.php" class="logo">Admin<span>Panel</span></a>
+   <a href="dashboard.php" class="logo">Harunah Enterprise<span></span></a>
 
    <div class="profile">
       <?php
