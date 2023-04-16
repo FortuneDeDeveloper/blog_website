@@ -82,7 +82,6 @@ CREATE TABLE IF NOT EXISTS `likes` (
 CREATE TABLE IF NOT EXISTS `posts` (
   `id` int(100) NOT NULL,
   `admin_id` int(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
   `title` varchar(100) NOT NULL,
   `content` varchar(10000) NOT NULL,
   `image_01` varchar(100) NOT NULL,

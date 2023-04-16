@@ -59,15 +59,15 @@ if(isset($_POST['publish'])){
    $image_folder_06 = '../uploaded_img/'.$image_06;
    
    //checking for already existing posts
-   $select_post = $conn->prepare("SELECT * FROM `posts` WHERE name = ?");
+   $select_post = $conn->prepare("SELECT * FROM `posts` WHERE title = ?");
    $select_post->execute([$title]);
 
    if($select_post->rowCount() > 0){
       $message[] = 'post already exist!';
    }else{
     // Insert post data into database
-    $insert_post = $conn->prepare("INSERT INTO `posts`(admin_id, name, title, content, image_01, image_02, image_03, image_04, image_05, image_06) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $insert_post->execute([$admin_id, $name, $title, $content, $image_01, $image_02, $image_03, $image_04, $image_05, $image_06]);
+    $insert_post = $conn->prepare("INSERT INTO `posts`(admin_id, title, content, image_01, image_02, image_03, image_04, image_05, image_06) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $insert_post->execute([$admin_id, $title, $content, $image_01, $image_02, $image_03, $image_04, $image_05, $image_06]);
 
       /*
       $insert_products = $conn->prepare("INSERT INTO `products`(name, details, price, image_01, image_02, image_03) VALUES(?,?,?,?,?,?)");
@@ -91,21 +91,27 @@ if(isset($_POST['publish'])){
       $insert_post = true; // example value, replace with your own logic
       $image_sizes = array($image_size_01, $image_size_02, $image_size_03, $image_size_04, $image_size_05, $image_size_06);
       $large_images = array_filter($image_sizes, function($size) {
-      return $size > 2000000;
-    });
+    return $size > 2000000;
+     });
 
     if ($insert_post) {
-    if (!empty($large_images)) {
-    $message[] = 'image size is too large!';
-    } else {
-    for ($i = 1; $i <= 6; $i++) {
-      $image_tmp_name = '$image_tmp_name_0' . $i;
-      $image_folder = '$image_folder_0' . $i;
-      move_uploaded_file($image_tmp_name, $image_folder);
+      if (!empty($large_images)) {
+        $message[] = 'image size is too large!';
+       } else {
+        for ($i = 1; $i <= 6; $i++) {
+            $image_tmp_name = ${'image_tmp_name_0' . $i};
+            $image_folder = ${'image_folder_0' . $i};
+            if (isset($image_tmp_name) && !empty($image_tmp_name)) {
+                if (move_uploaded_file($image_tmp_name, $image_folder)) {
+                    $message[] = 'File uploaded successfully';
+                } else {
+                    $message[] = 'Error uploading file: ' . error_get_last()['message'];
+                }
+            }
+        }
+        $message[] = 'Post Published';
     }
-    $message[] = 'Post Published';
-    }
-   }
+}
 
 
    }  
@@ -167,11 +173,11 @@ include '../components/admin_header.php'; ?>
       <div class="flex">
          <div class="inputBox">
             <span>Post title (required)</span>
-            <input type="text" class="box" required maxlength="100" placeholder="enter product name" name="name">
+            <input type="text" class="box" required maxlength="100" placeholder="enter post title" name="title">
          </div>
          <div class="inputBox">
             <span>Content (required)</span>
-            <textarea name="details" placeholder="enter post content" class="box" required maxlength="10000" cols="30" rows="10"></textarea>
+            <textarea name="content" placeholder="enter post content" class="box" required maxlength="10000" cols="30" rows="10"></textarea>
          </div>
          <!--div class="inputBox">
             <span>product price (required)</span>
